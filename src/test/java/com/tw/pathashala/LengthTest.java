@@ -1,4 +1,5 @@
 package com.tw.pathashala;
+
 import org.junit.jupiter.api.Test;
 
 import static com.tw.pathashala.Length.*;
@@ -9,7 +10,7 @@ class LengthTest {
 
     @Test
     void should_equate_1_cm_to_1_cm() {
-        Length oneCentimeter =  createCentimeter(1);
+        Length oneCentimeter = createCentimeter(1);
         Length anotherOneCentimeter = createCentimeter(1);
 
         assertThat(oneCentimeter, is(equalTo(anotherOneCentimeter)));
@@ -36,19 +37,50 @@ class LengthTest {
         Length hundredCentimeter = createCentimeter(100);
         Length pointZeroZeroOneKiloMeter = createKiloMeter(0.001);
 
-        assertThat(hundredCentimeter,is(equalTo(pointZeroZeroOneKiloMeter)));
+        assertThat(hundredCentimeter, is(equalTo(pointZeroZeroOneKiloMeter)));
     }
 
     @Test
     void should_equate_1_m_plus_100_cm_to_2_m() {
-        Length twoMeter = createMeter(2);
         Length oneMeter = createMeter(1);
         Length hundredCentimeter = createCentimeter(100);
+        Length twoMeter = createMeter(2);
 
-        Length oneMeterPluesHundredCentimeter = oneMeter.plus(hundredCentimeter);
+        Length oneMeterPlusHundredCentimeter = oneMeter.plus(hundredCentimeter);
 
-        assertThat(oneMeterPluesHundredCentimeter,is(equalTo(twoMeter)));
+        assertThat(oneMeterPlusHundredCentimeter, is(equalTo(twoMeter)));
     }
 
+    @Test
+    void should_equate_200_cm_plus_1_km_to_100200_m() {
+        Length twoHundredCentimeter = createCentimeter(200);
+        Length oneKilometer = createKiloMeter(1);
+        Length oneLakhTwoHundredCentimeter = createCentimeter(100200);
 
+        Length twoHundredCentimeterPlusOneKilometer = twoHundredCentimeter.plus(oneKilometer);
+
+        assertThat(twoHundredCentimeterPlusOneKilometer, is(equalTo(oneLakhTwoHundredCentimeter)));
+    }
+
+    @Test
+    void should_equate_1_m_minus_50_cm_to_point_5_m() {
+        Length oneMeter = createMeter(1);
+        Length fiftyCentimeter = createCentimeter(50);
+        Length pointFiveMeter = createMeter(0.5);
+
+        Length oneMeterMinusFiftyCentimeter = oneMeter.minus(fiftyCentimeter);
+
+        assertThat(oneMeterMinusFiftyCentimeter, is(equalTo(pointFiveMeter)));
+    }
+
+    @Test
+    void should_equate_2000_cm_minus_1_m_to_1900_cm() {
+        Length twoThousandCentimeter = createCentimeter(2000);
+        Length oneMeter = createMeter(1);
+        Length ninteenHundredCentimeter = createCentimeter(1900);
+
+        Length twoThousandCentimeterMinusOneMeter = twoThousandCentimeter.minus(oneMeter);
+
+        assertThat(twoThousandCentimeterMinusOneMeter, is(equalTo(ninteenHundredCentimeter)));
+    }
 }

@@ -46,14 +46,28 @@ public class Length {
     }
 
 
-    public Length plus(Length hundredCentimeter) {
+    public Length plus(Length lengthToPlus) {
         double thisMagnitude = convertUnitToCM(this.magnitude, this.unit);
 
-        double resultMagnitude = thisMagnitude + hundredCentimeter.magnitude;
+        double thatMagnitude = convertUnitToCM(lengthToPlus.magnitude, lengthToPlus.unit);
+
+        double resultMagnitude = thisMagnitude + thatMagnitude;
 
         resultMagnitude = convertToRequiredMetric(resultMagnitude, this.unit);
 
         return new Length(resultMagnitude, unit);
-
     }
+
+    public Length minus(Length lengthToMinus) {
+        double thisMagnitude = convertUnitToCM(this.magnitude, this.unit);
+
+        double thatMagnitude = convertUnitToCM(lengthToMinus.magnitude, lengthToMinus.unit);
+
+        double resultMagnitude = thisMagnitude - thatMagnitude;
+
+        resultMagnitude = convertToRequiredMetric(resultMagnitude, this.unit);
+
+        return new Length(resultMagnitude, unit);
+    }
+
 }
