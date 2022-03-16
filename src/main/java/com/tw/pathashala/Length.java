@@ -13,6 +13,7 @@ public class Length {
         this.unit = unit;
     }
 
+
     public static Length createCentimeter(double magnitude) {
 
         return new Length(magnitude, LengthMetrics.CENTIMETER);
@@ -26,6 +27,13 @@ public class Length {
     public static Length createKiloMeter(double magnitude) {
 
         return new Length(magnitude, LengthMetrics.KILOMETER);
+    }
+
+    public static Length createMeterCentimeter(double meterMagnitude, double centimeterMagnitude) {
+
+        meterMagnitude = LengthMetrics.convertUnitToCM(meterMagnitude, LengthMetrics.METER);
+
+        return new Length(meterMagnitude + centimeterMagnitude, LengthMetrics.CENTIMETER);
     }
 
 
