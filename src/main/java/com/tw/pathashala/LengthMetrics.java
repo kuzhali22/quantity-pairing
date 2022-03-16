@@ -6,13 +6,15 @@ enum LengthMetrics {
     CENTIMETER(1),
     KILOMETER(100000);
 
-    private final int metricValue;
+    private final int unitValue;
 
     LengthMetrics(int metricValue) {
-        this.metricValue = metricValue;
+        this.unitValue = metricValue;
     }
 
-    public int getMetricValue() {
-        return metricValue;
+    public static double convertUnitToCM(double magnitude, LengthMetrics metric) {
+
+        return magnitude * metric.unitValue;
+
     }
 }

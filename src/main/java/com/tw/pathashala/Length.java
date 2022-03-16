@@ -1,5 +1,7 @@
 package com.tw.pathashala;
 
+import static com.tw.pathashala.LengthMetrics.convertUnitToCM;
+
 public class Length {
 
     private final double magnitude;
@@ -29,8 +31,7 @@ public class Length {
 
     @Override
     public boolean equals(Object obj) {
-        //Length that = (Length) obj;
-        //System.out.println(magnitude + " " +MetricConversionUtility.convertOneMetricToAnotherMetric(that.magnitude,that.unit));
+
         if (this == obj) {
             return true;
         }
@@ -39,6 +40,9 @@ public class Length {
         }
         Length that = (Length) obj;
 
-        return MetricConversionUtility.convertOneMetricToAnotherMetric(magnitude,unit) == MetricConversionUtility.convertOneMetricToAnotherMetric(that.magnitude, that.unit);
+        double thisMagnitude = convertUnitToCM(magnitude, unit);
+        double thatMagnitude = convertUnitToCM(that.magnitude, that.unit);
+
+        return thisMagnitude == thatMagnitude;
     }
 }

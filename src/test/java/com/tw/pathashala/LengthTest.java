@@ -27,14 +27,14 @@ class LengthTest {
         Length hundredCentimeter = createCentimeter(100);
         Length oneMeter = Length.createMeter(1);
 
-        assertThat(oneMeter, is(equalTo(hundredCentimeter)));
+        assertThat(hundredCentimeter, is(equalTo(oneMeter)));
     }
 
     @Test
     void should_equate_100_cm_to_0_point_001_km() {
         Length hundredCentimeter = createCentimeter(100);
-        Length kiloMeter = Length.createKiloMeter(0.001);
+        Length pointZeroZeroOneKiloMeter = Length.createKiloMeter(0.001);
 
-        assertThat(kiloMeter,is(equalTo(hundredCentimeter)));
+        assertThat(hundredCentimeter,is(equalTo(pointZeroZeroOneKiloMeter)));
     }
 }
