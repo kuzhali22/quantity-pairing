@@ -1,5 +1,6 @@
 package com.tw.pathashala;
 
+import static com.tw.pathashala.LengthMetrics.convertToRequiredMetric;
 import static com.tw.pathashala.LengthMetrics.convertUnitToCM;
 
 public class Length {
@@ -7,12 +8,10 @@ public class Length {
     private final double magnitude;
     private final LengthMetrics unit;
 
-
     private Length(double magnitude, LengthMetrics unit) {
         this.magnitude = magnitude;
         this.unit = unit;
     }
-
 
     public static Length createCentimeter(double magnitude) {
 
@@ -29,14 +28,6 @@ public class Length {
         return new Length(magnitude, LengthMetrics.KILOMETER);
     }
 
-    public static Length createMeterCentimeter(double meterMagnitude, double centimeterMagnitude) {
-
-        meterMagnitude = LengthMetrics.convertUnitToCM(meterMagnitude, LengthMetrics.METER);
-
-        return new Length(meterMagnitude + centimeterMagnitude, LengthMetrics.CENTIMETER);
-    }
-
-
     @Override
     public boolean equals(Object obj) {
 
@@ -52,5 +43,17 @@ public class Length {
         double thatMagnitude = convertUnitToCM(that.magnitude, that.unit);
 
         return thisMagnitude == thatMagnitude;
+    }
+
+
+    public Length plus(Length hundredCentimeter) {
+        double thisMagnitude = convertUnitToCM(this.magnitude, this.unit);
+
+        double resultMagnitude = thisMagnitude + hundredCentimeter.magnitude;
+
+        resultMagnitude = convertToRequiredMetric(resultMagnitude, this.unit);
+
+        return new Length(resultMagnitude, unit);
+
     }
 }

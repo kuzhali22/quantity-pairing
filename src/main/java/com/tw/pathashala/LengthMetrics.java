@@ -17,4 +17,8 @@ enum LengthMetrics {
         return magnitude * metric.unitValue;
 
     }
+
+    public static double convertToRequiredMetric(double magnitude, LengthMetrics metric){
+        return magnitude / metric.unitValue;
+    }
 }

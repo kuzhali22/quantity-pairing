@@ -1,7 +1,7 @@
 package com.tw.pathashala;
 import org.junit.jupiter.api.Test;
-import static com.tw.pathashala.Length.createCentimeter;
-import static com.tw.pathashala.Length.createMeter;
+
+import static com.tw.pathashala.Length.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -34,17 +34,21 @@ class LengthTest {
     @Test
     void should_equate_100_cm_to_0_point_001_km() {
         Length hundredCentimeter = createCentimeter(100);
-        Length pointZeroZeroOneKiloMeter = Length.createKiloMeter(0.001);
+        Length pointZeroZeroOneKiloMeter = createKiloMeter(0.001);
 
         assertThat(hundredCentimeter,is(equalTo(pointZeroZeroOneKiloMeter)));
     }
 
     @Test
-    void should_equate_2_m_to_1_m_plus_100_cm() {
+    void should_equate_1_m_plus_100_cm_to_2_m() {
         Length twoMeter = createMeter(2);
-        Length oneMeterHundredCentimeter = Length.createMeterCentimeter(1, 100);
+        Length oneMeter = createMeter(1);
+        Length hundredCentimeter = createCentimeter(100);
 
-        assertThat(twoMeter,is(equalTo(oneMeterHundredCentimeter)));
+        Length oneMeterPluesHundredCentimeter = oneMeter.plus(hundredCentimeter);
 
+        assertThat(oneMeterPluesHundredCentimeter,is(equalTo(twoMeter)));
     }
+
+
 }
